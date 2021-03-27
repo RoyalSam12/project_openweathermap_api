@@ -1,6 +1,5 @@
 {% extends 'weather/base.html' %}
+{% load specifications %}
 {% block content %}
-    {% for date_info in data.items %}
-    <h1>{{ date_info }}</h1>
-{% endfor %}
+    {{ data|weather_card }}
 {% endblock %}

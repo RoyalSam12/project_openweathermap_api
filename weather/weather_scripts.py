@@ -8,6 +8,7 @@ def compress_information_from_request(response):
     res = response.json()  # Используем метод json() для получения информации из response
 
     info = {
+        'city_name': res['name'],  # Название города
         'weather_id': res['weather'][0]['id'],  # Id Погоды (Нужно для визуализации статуса погоды)
         'weather_description': res['weather'][0]['description'],  # Описание погоды
         'temp': res['main']['temp'],  # Температура на улице
@@ -15,7 +16,6 @@ def compress_information_from_request(response):
         'tem_max': res['main']['temp_max'],  # Максимальная температура за день
         'humidity': res['main']['humidity'],  # Влажность
         'wind_speed': res['wind']['speed'],  # Скорость Ветра
-        'city_name': res['name']  # Название города
     }
 
     return info  # Возращаем словарь со значениями
