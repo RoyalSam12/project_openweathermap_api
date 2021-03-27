@@ -27,8 +27,10 @@ class CityWeather:
         self.city = city
 
     def request_weather(self):
-        """Функция делает request и возращает response из API openweathermap.org
-        в случае если ответом не будет ошибка 404"""
+        """
+        Функция делает request и возращает response из API openweathermap.org
+        в случае если ответом не будет ошибка 404
+        """
 
         params = {
             'q': self.city,  # Город

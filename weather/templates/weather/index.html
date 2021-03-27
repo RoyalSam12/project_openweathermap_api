@@ -1,4 +1,8 @@
 {% extends 'weather/base.html' %}
 {% block content %}
-
+    <div class="card-group d-flex justify-content-center">
+        <form action="" class="flex-column" method="post">{% csrf_token %}
+            {{ form.as_table }}
+        </form>
+    </div>
 {% endblock %}
