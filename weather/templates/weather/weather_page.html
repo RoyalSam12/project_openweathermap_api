@@ -1,5 +1,8 @@
 {% extends 'weather/base.html' %}
 {% load specifications %}
+{% load static %}
+
 {% block content %}
+    <img src="{% static image %}" width="500" height="500">
     {{ data|weather_card }}
 {% endblock %}

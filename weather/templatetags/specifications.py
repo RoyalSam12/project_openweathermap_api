@@ -1,11 +1,11 @@
 from django import template
 from django.utils.safestring import mark_safe
+from ..models import WeatherImage
 
 register = template.Library()
 
 CARD_HEAD = '''
             <div class="card bg-dark" style="width: 18rem;">
-                <img src="{}" class="card-img-top">
                 <div class="card-body">
                     <table class="table">
                         <tbody>

@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-
+from . models import WeatherImage
 from .forms import CityForm
 from .weather_scripts import CityWeather, compress_information_from_request
 
@@ -13,8 +13,10 @@ def weather_page(requests, city):
 
     custom_city = CityWeather(city)  # Создаем экземпля Класса
     res = custom_city.request_weather()  # Делаем запрос по Api и получаем response
+    compress_res = compress_information_from_request(res) # Собираем всю информацию из запроса в словарь
     context = {
-        'data': compress_information_from_request(res)  # Собираем всю информацию из запроса в словарь
+        'data': compress_res,  # Передаем инфу в HTML
+        'image': WeatherImage.objects.get(id=compress_res['weather_id']).image.url  # Берем с бд фото соотвенно с id
     }  # Словарь context с нужной для нас информацией который мы используем для заполнения html страницы
     return render(requests, template_name='weather/weather_page.html', context=context)
 
