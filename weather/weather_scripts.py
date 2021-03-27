@@ -1,24 +1,5 @@
-import json
-
 import requests
 from decouple import config
-
-
-def request_weather(city):
-    """Функция делает request и возращает response из API openweathermap.org
-    в случае если ответом не будет ошибка 404"""
-
-    params = {
-        'q': city,  # Город
-        'appid': str(config('API_KEY_OPEN_WEATHER')),  # API KEY необходимий для работы запроса на сервер
-        'units': 'metric',  # Указываем что хотим получить измерение в Цельсиях
-        'lang': 'ru'  # Язык
-    }
-
-    re = requests.get('http://api.openweathermap.org/data/2.5/weather', params=params)  # Запрос на сервер
-    if re.status_code == '404':
-        return False
-    return re
 
 
 def compress_information_from_request(response):
@@ -40,8 +21,31 @@ def compress_information_from_request(response):
     return info  # Возращаем словарь со значениями
 
 
+class CityWeather:
+
+    def __init__(self, city):
+        self.city = city
+
+    def request_weather(self):
+        """Функция делает request и возращает response из API openweathermap.org
+        в случае если ответом не будет ошибка 404"""
+
+        params = {
+            'q': self.city,  # Город
+            'appid': str(config('API_KEY_OPEN_WEATHER')),  # API KEY необходимий для работы запроса на сервер
+            'units': 'metric',  # Указываем что хотим получить измерение в Цельсиях
+            'lang': 'ru'  # Язык
+        }
+
+        re = requests.get('http://api.openweathermap.org/data/2.5/weather', params=params)  # Запрос на сервер
+        if re.status_code == '404':
+            return False
+        return re
+
+
 if __name__ == '__main__':
-    kiev_weather = request_weather(city='Kiev')  # Проверяем работу первой функции
+    kiev = CityWeather('Kiev')
+    kiev_weather = kiev.request_weather()  # Проверяем работу первой функции
 
     if kiev_weather:
         print(compress_information_from_request(kiev_weather))  # Функция прошла удачно и мы получаем результат второй
