@@ -14,6 +14,7 @@ def request_weather(city):
         'units': 'metric',  # Указываем что хотим получить измерение в Цельсиях
         'lang': 'ru'  # Язык
     }
+
     re = requests.get('http://api.openweathermap.org/data/2.5/weather', params=params)  # Запрос на сервер
     if re.status_code == '404':
         return False
@@ -26,14 +27,14 @@ def compress_information_from_request(response):
     res = response.json()  # Используем метод json() для получения информации из response
 
     info = {
-        'weather_id': res['weather'][0]['id'],
-        'weather_description': res['weather'][0]['description'],
-        'temp': res['main']['temp'],
-        'temp_feels': res['main']['feels_like'],
-        'tem_max': res['main']['temp_max'],
-        'humidity': res['main']['humidity'],
-        'wind_speed': res['wind']['speed'],
-        'city_name': res['name']
+        'weather_id': res['weather'][0]['id'],  # Id Погоды (Нужно для визуализации статуса погоды)
+        'weather_description': res['weather'][0]['description'],  # Описание погоды
+        'temp': res['main']['temp'],  # Температура на улице
+        'temp_feels': res['main']['feels_like'],  # То как температура чувствуется
+        'tem_max': res['main']['temp_max'],  # Максимальная температура за день
+        'humidity': res['main']['humidity'],  # Влажность
+        'wind_speed': res['wind']['speed'],  # Скорость Ветра
+        'city_name': res['name']  # Название города
     }
 
     return info  # Возращаем словарь со значениями
