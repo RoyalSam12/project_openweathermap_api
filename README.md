@@ -19,14 +19,14 @@
 3. Перейти в папку с проектом и создать виртуальное окружение.
 
 - C:\Users\User\working_directory> cd project_openweathermap_api
-- C:\Users\Владислав\ee\project_openweathermap_api>python -m venv env 
+- C:\Users\User\ee\project_openweathermap_api>python -m venv env 
 
 4. Активируем виртуальное окружение(venv/Scripts/activate) и устанавливаем нужные модули..
 
-- C:\Users\Владислав\ee\project_openweathermap_api> pip install -r requirements.txt
+- C:\Users\User\ee\project_openweathermap_api> pip install -r requirements.txt
 
 5. Делаем миграции и запускам сервер.
 
-- C:\Users\Владислав\ee\project_openweathermap_api> py manage.py makemigrations 
-- C:\Users\Владислав\ee\project_openweathermap_api> py manage.py migrate
-- C:\Users\Владислав\ee\project_openweathermap_api> py manage.py runserver
+- C:\Users\User\ee\project_openweathermap_api> py manage.py makemigrations 
+- C:\Users\User\ee\project_openweathermap_api> py manage.py migrate
+- C:\Users\User\ee\project_openweathermap_api> py manage.py runserver
